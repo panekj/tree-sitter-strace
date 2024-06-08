@@ -3,20 +3,45 @@
   "version": "0.0.1",
   "description": "Strace grammar for tree-sitter",
   "main": "bindings/node",
+  "types": "bindings/node",
   "scripts": {
     "generate": "tree-sitter generate",
     "test": "npm run generate && tree-sitter test",
-    "test:update": "npm run generate && npx tree-sitter test -u"
+    "test:update": "npm run generate && npx tree-sitter test -u",
+    "install": "node-gyp-build",
+    "prebuildify": "prebuildify --napi --strip"
   },
-  "keywords": ["parser", "tree-sitter","strace"],
+  "keywords": [
+    "parser",
+    "tree-sitter",
+    "strace"
+  ],
+  "files": [
+    "grammar.js",
+    "binding.gyp",
+    "prebuilds/**",
+    "bindings/node/*",
+    "queries/*",
+    "src/**"
+  ],
   "author": "https://github.com/sigmaSd/",
   "license": "MIT",
   "dependencies": {
-    "nan": "^2.17.0"
+    "node-addon-api": "^7.1.0",
+    "node-gyp-build": "^4.8.0"
+  },
+  "peerDependencies": {
+    "tree-sitter": "^0.21.0"
+  },
+  "peerDependenciesMeta": {
+    "tree_sitter": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@types/node": "^20.4.8",
-    "tree-sitter-cli": "^0.20.8"
+    "tree-sitter-cli": "^0.20.8",
+    "prebuildify": "^6.0.0"
   },
   "tree-sitter": [
     {
